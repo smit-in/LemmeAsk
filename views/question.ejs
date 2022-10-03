@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Charset, viewport, favicon, global fonts, global stylesheets-->
+
+    <%- include ('partials/head.ejs') %>
+
+    <!-- Custom -->
+
+    <!-- <meta http-equiv="refresh" content="5"> -->
+
+    <title> <%= questionTitle %> | LemmeAsk</title>
+
+    <link
+    rel="stylesheet"
+    href="/css/question.css"
+    >
+</head>
+<body>
+
+    <!-- Header -->
+    <%- include ('partials/header.ejs') %>
+
+    <!-- 'Question' Section -->
+    <div class="question-section">
+        <div class="container">
+            <div class="question-section-content">
+                <div class="section-title">
+                    <p>Question</p>
+                    <img src="/img/last-questions-dashed-line.svg">
+                </div>
+
+                <article class="question">
+                    <div class="question-text-area">
+                        <h1> <%= questionTitle %> </h1>
+                        <p> <%= questionDescription %> </p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+
+    <!-- 'Answers' Section -->
+    <div class="answers-section">
+        <div class="container">
+            <div class="answers-section-content">
+                
+                <div class="section-title">
+                    <p>Answers</p>
+                    <img src="/img/last-questions-dashed-line.svg">
+                </div>
+
+                <div class="answers">
+                    
+                    <% replies.forEach(answer => { %>
+
+                        <div class="reply">
+                            <div class="reply-img">
+                                <img src="/img/chat-ballon.svg" alt="Icon with two chat bubbles">
+                            </div>
+                            <div class="reply-text-area">
+                                <p><%= answer.reply %></p>
+                            </div>
+                        </div>
+
+                    <% }) %>
+                    
+
+                </div>
+
+                <div class="submit-your-reply">
+                    <form id="submit-form" action="/send-reply" method="POST">
+                        <textarea class="submit-your-reply-textarea" name="reply" id="reply" placeholder="Type your answer here.." minlength="30" maxlength="480" required ></textarea>
+                        <input type="number" name="questionId" id="questionId" value="<%= questionId %>" hidden>
+                        <div class="box-description">
+                            <p>Answers with a minimum of 30 and a maximum of 480 characters are accepted.</p>
+                            <button id="submitBtn" type="submit">Answer</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <%- include ('partials/footer.ejs') %>
+</body>
+<script src="reload/reload.js"></script>
+<script src="/js/question.js"></script>
+</html>

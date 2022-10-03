@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+    <!-- Charset, viewport, favicon, global fonts, global stylesheets-->
+    
+    <%- include ('partials/head.ejs') %>
+
+    <!-- Custom -->
+
+    <title>LemmeAsk</title>
+
+    <link
+    rel="stylesheet"
+    href="/css/index.css"
+    >
+
+</head>
+<body>
+    <div class="home-page">
+        
+        <!-- Header -->
+        <%- include ('partials/header.ejs') %>
+
+        <!-- 'Last questions' section -->
+        <div class="last-questions-section">
+            <div class="container">
+                <div class="last-questions-section-content">
+
+                    <div class="section-title">
+                        <p>Recent question</p>
+                        <img src="/img/last-questions-dashed-line.svg">
+                    </div>
+
+                    <% questions.forEach( question => {%>
+                        <article class="question">
+                            <div class="question-text-area">
+                                <h1> <%= question.title %> </h1>
+                                <p> <%= question.description %> </p>
+                            </div>
+                            <a class="question-btn-area" href="/quest?id=<%= question.id %>">
+                                <img src="/img/next-arrow.svg" alt="answer question">
+                            </a>
+                        </article>
+                    <% }) %>
+                    
+
+
+                    <div class="section-title">
+                        <p>Old question</p>
+                        <img src="/img/last-questions-dashed-line.svg">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <%- include ('partials/footer.ejs') %>
+        
+    </div>
+    <script src="reload/reload.js"></script>
+</body>
+</html>
+
